@@ -71,9 +71,12 @@ task('serve', function () {
 
     // Watch HTML files for changes and reload the browser
 
-    watch(['./app/*.html', './app/blocks/*.html', './app/css/*.css', './app/js/*.js', './app/scss/*.scss', './app/img/*.img'], series('html', 'css', 'js', 'sass','imgs' )).on('change', browserSync.reload);
-
-
+    //watch(['./app/*.html', './app/blocks/*.html', './app/css/*.css', './app/js/*.js', './app/scss/*.scss', './app/img/*.img'], series('html', 'css', 'js', 'sass','imgs' )).on('change', browserSync.reload);
+    watch(['./app/*.html', './app/blocks/*.html'], series('html')).on('change', browserSync.reload);
+    watch('./app/css/*.css', series('css')).on('change', browserSync.reload);
+    watch('./app/js/*.js', series('js')).on('change', browserSync.reload);
+    watch('./app/scss/*.scss', series('sass')).on('change', browserSync.reload);
+    watch('./app/img/*.img', series('imgs')).on('change', browserSync.reload);
 });
 
 // Default task:
