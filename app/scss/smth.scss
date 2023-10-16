@@ -1,7 +1,71 @@
-$font-stack: Helvetica, sans-serif;
-$primary-color: #25aa25;
+$header-height: 50px;
+$sidebar-width: 4.5rem;
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap-reboot.scss";
+
+p {
+  font-family:  'Open Sans';
+  src: url("fonts/OpenSans-Semibold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.text-bold {
+  font-weight: bold; 
+}
+
+
+.header{
+  background-color: #34383c;
+  height: $header-height;
+}
+
+.search-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.settings{
+  background-color: #1e2327;
+  height: $header-height;
+}
+
+.drbutt{
+  background-color: #1e2327;
+  border-color: #1e2327;
+}
+
+.sidebar {
+  height: calc(100vh - $header-height);
+  width: $sidebar-width;
+  background-color: #4d5e84;
+}
+
+.content {
+  width: calc(100vw - $sidebar-width);
+  background-color: #f2f2f2;
+}
+
+.second-row {
+  width: calc(100vw - $sidebar-width);
+  display: flex;
+  align-items: center; /* Це центруватиме вміст по вертикалі */
+  justify-content: center; /* Це центруватиме вміст по горизонталі */
+}
+.left-margin{
+  margin-left: 4.5%;
 }

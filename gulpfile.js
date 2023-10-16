@@ -76,7 +76,7 @@ task('serve', function () {
     watch('./app/css/*.css', series('css')).on('change', browserSync.reload);
     watch('./app/js/*.js', series('js')).on('change', browserSync.reload);
     watch('./app/scss/*.scss', series('sass')).on('change', browserSync.reload);
-    watch('./app/img/*.img', series('imgs')).on('change', browserSync.reload);
+    watch('./app/img', series('imgs')).on('change', browserSync.reload);
 });
 
 // Default task:
