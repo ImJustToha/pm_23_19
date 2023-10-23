@@ -39,8 +39,8 @@ task('js', function () {
 })
 task('sass', function () {
     return src(['./app/scss/*.scss'])
-    .pipe(cssnano())
     .pipe(sass())
+    .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     
     //.pipe (sass ())

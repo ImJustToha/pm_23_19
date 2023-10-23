@@ -1,5 +1,5 @@
 $header-height: 50px;
-$sidebar-width: 4.5rem;
+$sidebar-width: 90px;
 
 *{
   box-sizing: border-box;
@@ -21,6 +21,12 @@ p {
   font-style: normal;
 }
 
+ss{
+  font-size: xx-small;
+  font-family: 'Open Sans';
+  src: url("fonts/OpenSans-Semibold.ttf") format("truetype");
+  color: #8f99b1
+}
 
 .text-bold {
   font-weight: bold; 
@@ -49,10 +55,23 @@ p {
   border-color: #1e2327;
 }
 
+.bar{
+  box-sizing: border-box;
+    flex-shrink: 0;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y)
+}
+
 .sidebar {
-  height: calc(100vh - $header-height);
+  //height: calc(100vh - $header-height);
   width: $sidebar-width;
   background-color: #4d5e84;
+}
+
+.progress{
+  width: 100%;
 }
 
 .content {
@@ -63,9 +82,37 @@ p {
 .second-row {
   width: calc(100vw - $sidebar-width);
   display: flex;
-  align-items: center; /* Це центруватиме вміст по вертикалі */
-  justify-content: center; /* Це центруватиме вміст по горизонталі */
+  align-items: center; 
+  justify-content: center; 
 }
 .left-margin{
   margin-left: 4.5%;
+}
+
+
+.text {
+  font-size: 18px; 
+  color: #777; 
+}
+
+
+.progress-bar {
+  background-image: linear-gradient(to right,rgb(255, 72, 72), rgb(94, 218, 94)); 
+  position: relative;
+  transition: all 0.5s ease;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gradient-fill {
+  height: 100%; 
+  position: absolute;
+  top: 0;
+  right: 0;     
+  background: #dde7ed;
+}
+
+.progress-text {
+  font-size: 16px; 
+  color: #777; 
 }
