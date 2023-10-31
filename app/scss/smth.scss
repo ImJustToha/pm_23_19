@@ -1,5 +1,7 @@
 $header-height: 50px;
 $sidebar-width: 90px;
+$block-height: 600px; 
+
 
 *{
   box-sizing: border-box;
@@ -27,6 +29,7 @@ ss{
   src: url("fonts/OpenSans-Semibold.ttf") format("truetype");
   color: #8f99b1
 }
+
 
 .text-bold {
   font-weight: bold; 
@@ -80,13 +83,21 @@ ss{
 }
 
 .second-row {
-  width: calc(100vw - $sidebar-width);
   display: flex;
   align-items: center; 
   justify-content: center; 
 }
+
 .left-margin{
   margin-left: 4.5%;
+}
+
+.nav-item{
+
+  &.active{
+    opacity: 0.15;
+    background-color: rgb(71, 70, 70);
+  }
 }
 
 
@@ -115,4 +126,7 @@ ss{
 .progress-text {
   font-size: 16px; 
   color: #777; 
+  position: absolute;
+  top: 0;
+  left: 92%;
 }
