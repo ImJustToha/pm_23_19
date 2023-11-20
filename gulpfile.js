@@ -37,6 +37,14 @@ task('js', function () {
     .pipe(dest('./dist/js/')) // Каталог для збереження оброблених файлів
     .pipe(browserSync.stream());
 })
+
+task('chart-js', function () {
+    return src(['./node_modules/chart.js/dist/chart.umd.js'])
+    .pipe(concat('chart.js')) // Об'єднати всі js файли в один файл
+    .pipe(dest('./dist/js/')) // Каталог для збереження оброблених файлів
+    .pipe(browserSync.stream());
+})
+
 task('sass', function () {
     return src(['./app/scss/*.scss'])
     .pipe(sass())
@@ -80,4 +88,4 @@ task('serve', function () {
 });
 
 // Default task:
-task('default', series('html', 'css','js', 'sass','imgs', 'serve'));
+task('default', series('html', 'css', 'js', 'chart-js', 'sass', 'imgs', 'serve'));

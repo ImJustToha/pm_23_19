@@ -75,7 +75,7 @@ d3{
   height: $header-height;
 }
 
-.rfile{
+.rfil{
   height: $header-height;
   background-color: #fafafa;
    width: 17.7%; 
@@ -114,7 +114,14 @@ d3{
 }
 
 .card-body{
-  background-color: #fafafa;
+  background-color: white;
+  height: 100%;
+  padding: 0;
+  display: flex;
+}
+
+.WaveGraph{
+  width:100%;
 }
 
 .progress{
@@ -128,25 +135,25 @@ d3{
 
 .second-row {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
+  // align-items: center; 
+  // justify-content: center; 
 }
 
 .second-one-row{
   height: 250px;
+
 }
 
 .another-second-row{
   background-color:#ffffff; 
-  padding-top:10px
+  padding-top:10px;
 }
 
 .left-margin{
   margin-left: 4.5%;
 }
 
-.nav-item{
-
+.nav-item {
   height: 75px;
 
   &.active{
@@ -163,7 +170,7 @@ d3{
 
 
 .progress-bar {
-  background-image: linear-gradient(to right,rgb(255, 72, 72), rgb(94, 218, 94)); 
+  background-image: linear-gradient(to right,rgb(242, 72, 55), rgb(35, 194, 146)); 
   position: relative;
   transition: all 0.5s ease;
   width: 100%;
@@ -188,7 +195,17 @@ d3{
 
 .card{
   position: relative;
+  display: block;
+  height: 75%;
+  &.begin{
+      position: relative;
+      display: flex;
+      height:  100%;
+  }
+  
 }
+
+
 
 .btn-group-sm{
   position: absolute; 
@@ -200,4 +217,8 @@ d3{
   &.active{
     color: green;
   }
+}
+
+.the-last-row{
+  height: 450px;
 }
