@@ -113,11 +113,20 @@ d3{
    background-color: #5f6e91;
 }
 
+.sppedGraph{
+  height: 90%;
+  position: relative;
+  bottom: -25px;
+}
+
 .card-body{
   background-color: white;
   height: 100%;
   padding: 0;
   display: flex;
+  &.graph{
+    justify-content: center;
+  }
 }
 
 .WaveGraph{
@@ -205,6 +214,31 @@ d3{
   
 }
 
+.GraphLabel{
+    font: sans-serif;
+    font-size: 34px; 
+    color: #333;
+    position: absolute;
+    right: 137px;
+    //top: 50px;
+    height: 30px;
+}
+
+.Lab{
+  top: 62px;
+  position: absolute;
+  right: 26%;
+  font: sans-serif;     
+  font-size: 24px; 
+  color: white;
+  display: flex;
+  color: #fff;
+  border-radius: 35%;
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  justify-content: center;
+}
 
 
 .btn-group-sm{
