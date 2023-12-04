@@ -5,6 +5,7 @@ const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass')(require('sass'));
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
+const jsonminify = require('gulp-jsonminify');
 
 //додаткові плагіни Gulp
  cssnano = require ("gulp-cssnano"), //мінімізація CSS
@@ -44,6 +45,12 @@ task('chart-js', function () {
     .pipe(dest('./dist/js/')) // Каталог для збереження оброблених файлів
     .pipe(browserSync.stream());
 })
+
+task('json', function () {
+    return src('./app/json/*.json')
+      .pipe(jsonminify())
+      .pipe(dest('./dist/json/'));
+  });
 
 task('sass', function () {
     return src(['./app/scss/*.scss'])
@@ -85,7 +92,8 @@ task('serve', function () {
     watch('./app/js/*.js', series('js')).on('change', browserSync.reload);
     watch('./app/scss/*.scss', series('sass')).on('change', browserSync.reload);
     watch('./app/img', series('imgs')).on('change', browserSync.reload);
+    watch('./app/json', series('json')).on('change', browserSync.reload);
 });
 
 // Default task:
-task('default', series('html', 'css', 'js', 'chart-js', 'sass', 'imgs', 'serve'));
+task('default', series('html', 'css', 'js', 'chart-js', 'sass', 'imgs','json','serve'));

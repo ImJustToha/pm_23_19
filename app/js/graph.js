@@ -20,7 +20,7 @@ window.onload = function () {
         display: false,
        
         fill: true,
-        data: [2530, 2300, 1650, 2500, 2000, 3750, 4200],
+        data: [25, 23, 16, 25, 20, 37, 42],
         pointRadius: 5,
         pointBackgroundColor: 'rgba(0,0,0,0)',
         pointHoverBackgroundColor: 'rgba(60,180,170,0.8)',
@@ -38,6 +38,17 @@ window.onload = function () {
         display: false,
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, ticks) {
+            return value + "k";
+          },
+        },
+      }
+    },
+    
     }
   });
 
@@ -116,74 +127,6 @@ window.onload = function () {
     },
   })
 
-// new graph
-
-const labels = ['June', 'July', 'August', 'September'];
-const datas = {
-  labels: labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [10, 15, 20 , 12],
-      backgroundColor: 'rgb(72, 121, 223)',
-      barPercentage: 0.5,
-      usePointStyle: true,
-      pointStyle: 'circle',
-    },
-    {
-      label: 'Dataset 2',
-      data: [25, 15, 2, 10],
-      backgroundColor: 'rgb(33, 195, 147)',
-      barPercentage: 0.5,
-      usePointStyle: true,
-      pointStyle: 'circle',
-    },
-    {
-      label: 'Dataset 3',
-      data: [4, 22, 16, 24],
-      backgroundColor: 'rgb(251, 224, 141)',
-      barPercentage: 0.5,
-      usePointStyle: true,
-      pointStyle: 'circle',
-    },
-  ]
-};
-let BarChart = document.getElementById("BarChart").getContext('2d');
-
-const BarChartv = new Chart(BarChart, {
-  type: 'bar',
-  data: datas,
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins:{
-      legend:{
-        labels:{
-          boxWidth: 10,
-          boxHeight: 10,
-        },
-        align: 'start',
-      },
-    },
-    scales: {
-      x:{
-        stacked: true,
-      },
-      y: {
-        ticks: {
-        // Include a dollar sign in the ticks
-        callback: function (value, index, ticks) {
-          return value + "%";
-        },
-        stepSize: 25, // Interval between tick marks
-      },
-        
-        stacked: true,
-        min: 0,
-        max: 100,
-    }
-  }
-}});
 
 
 //new graph
@@ -280,8 +223,7 @@ let BarCh = document.getElementById("BarCh").getContext('2d');
 const BarChrt = new Chart(BarCh,{
   type: 'bar',
   data: datasss,
-  options: {
-    responsive: true,
+  options: { 
     maintainAspectRatio: false,
       plugins:{
         legend:{
@@ -308,32 +250,12 @@ const BarChrt = new Chart(BarCh,{
   },
 }})
 
+
 const ctx = document.getElementById("SpeedometrGraph").getContext('2d');
 const gradientSegment = ctx.createLinearGradient(0,0,210,0);
 gradientSegment.addColorStop(0, '#f44636');
 gradientSegment.addColorStop(0.7, '#f9df41');
 gradientSegment.addColorStop(1, '#21c393');
-
-const datata = {
-  labels: ['Score', 'GreyArea'],
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [6, 0],
-      backgroundColor: [gradientSegment, '#f2f4f4'],
-      borderColor: [gradientSegment, '#f2f4f4' ],
-      circumference: 180,
-      rotation: 270,
-      cutout: '80%',
-      //borderRadius: 10,
-      //needleValue: datata.datasets[0].data[0],
-    }
-  ]
-};
-
-datata.datasets[0].needleValue = datata.datasets[0].data[0];
-datata.datasets[0].data[1] = 10-datata.datasets[0].data[0];
-
 
 const gaugeNeedle ={
   id: 'gaugeNeedle',
@@ -384,6 +306,126 @@ const gaugeNeedle ={
   }
 }
 
+
+
+
+
+//AJAX
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    const xmlhttp = new XMLHttpRequest();
+    const url = '/json/data.json';
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const data = JSON.parse(this.responseText);
+        const number1 =data.datas.map(function(index) {return index.number})
+        const number2 =data.datas2.map(function(index) {return index.number})
+        const label_month = data.datas3.map(function(index) {return index.month})
+        const data_set1 = data.datas3.map(function(index) {return index.number1})
+        const data_set2 = data.datas3.map(function(index) {return index.number2})
+        const data_set3 = data.datas3.map(function(index) {return index.number3})
+        console.log(data.datas3)
+        console.log(data_set2)
+        resolve([number1, number2, label_month, data_set1, data_set2, data_set3]);
+      }
+    };
+    xmlhttp.send();
+  });
+};
+fetchData().then(([number1,number2, label_month, data_set1, data_set2, data_set3]) => {
+console.log(number1)
+console.log(data_set3)
+// new graph
+
+const datas = {
+  labels: label_month,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: data_set1,
+      backgroundColor: 'rgb(72, 121, 223)',
+      barPercentage: 0.5,
+      usePointStyle: true,
+      pointStyle: 'circle',
+    },
+    {
+      label: 'Dataset 2',
+      data: data_set2,
+      backgroundColor: 'rgb(33, 195, 147)',
+      barPercentage: 0.5,
+      usePointStyle: true,
+      pointStyle: 'circle',
+    },
+    {
+      label: 'Dataset 3',
+      data: data_set3,
+      backgroundColor: 'rgb(251, 224, 141)',
+      barPercentage: 0.5,
+      usePointStyle: true,
+      pointStyle: 'circle',
+    },
+  ]
+};
+let BarChart = document.getElementById("BarChart").getContext('2d');
+
+const BarChartv = new Chart(BarChart, {
+  type: 'bar',
+  data: datas,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins:{
+      legend:{
+        labels:{
+          boxWidth: 10,
+          boxHeight: 10,
+        },
+        align: 'start',
+      },
+    },
+    scales: {
+      x:{
+        stacked: true,
+      },
+      y: {
+        ticks: {
+        // Include a dollar sign in the ticks
+        callback: function (value, index, ticks) {
+          return value + "%";
+        },
+        stepSize: 25, // Interval between tick marks
+      },
+        
+        stacked: true,
+        min: 0,
+        max: 100,
+    }
+  }
+}});
+
+
+const datata = {
+  labels: ['Score', 'GreyArea'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [number1, 0],
+      backgroundColor: [gradientSegment, '#f2f4f4'],
+      borderColor: [gradientSegment, '#f2f4f4' ],
+      circumference: 180,
+      rotation: 270,
+      cutout: '80%',
+      //borderRadius: 10,
+      //needleValue: datata.datasets[0].data[0],
+    }
+  ]
+};
+
+datata.datasets[0].needleValue = number1;
+datata.datasets[0].data[1] = 10-number1;
+
 const config = {
   type: 'doughnut',
   data: datata,
@@ -400,22 +442,21 @@ const config = {
   },
   plugins:[gaugeNeedle]
 };
-
 const Graph = new Chart(ctx, config);
 let graphLabel = document.getElementById("graphLabel");
 let lab = document.getElementById("lab");
 //graphLabel.innerText = datata.datasets[0].needleValue + '/10';
-graphLabel.innerHTML = `${datata.datasets[0].needleValue}</span><span style="color: black; font-size: 70%; font-weight: normal;">/10</span>`;
+graphLabel.innerHTML = `${number1}</span><span style="color: black; font-size: 70%; font-weight: normal;">/10</span>`;
 // graphLabel.fontSize = '38px'
 lab.style.fontSize = '18px'
 graphLabel.style.fontWeight = 'bold';
-if (datata.datasets[0].needleValue < 4)
+if (number1 < 4)
 {
   graphLabel.style.color = '#f44636';
   lab.innerText = 'Bad';
   lab.style.background = '#f44636';
 }
-else if (4 <=datata.datasets[0].needleValue && datata.datasets[0].needleValue <= 6) 
+else if (4 <=number1 &&number1 <= 6) 
 {
   lab.innerText = 'Fair';
   lab.style.backgroundColor = '#f8b83e';
@@ -428,14 +469,13 @@ else
   graphLabel.style.color = '#21c393';
 }
 
-const ctx2 = document.getElementById("SpeedometrGraph2").getContext('2d');
 
 const datatata = {
   labels: ['Score', 'GreyArea'],
   datasets: [
     {
-      label: 'Dataset 1',
-      data: [8, 0],
+      label: 'Datasett',
+      data: [number2, 0],
       backgroundColor: [gradientSegment, '#f2f4f4'],
       borderColor: [gradientSegment, '#f2f4f4' ],
       circumference: 180,
@@ -447,8 +487,10 @@ const datatata = {
   ]
 };
 
-datatata.datasets[0].needleValue = datatata.datasets[0].data[0];
-datatata.datasets[0].data[1] = 10-datatata.datasets[0].data[0];
+
+///////////
+datatata.datasets[0].needleValue = number2;
+datatata.datasets[0].data[1] = 10-number2;
 const config2 = {
   type: 'doughnut',
   data: datatata,
@@ -469,21 +511,21 @@ const config2 = {
 let graphLabel1 = document.getElementById("graphLabel1");
 let lab1 = document.getElementById("lab1");
 //graphLabel.innerText = datata.datasets[0].needleValue + '/10';
-graphLabel1.innerHTML = `${datatata.datasets[0].needleValue}</span><span style="color: black; font-size: 70%; font-weight: normal;">/10</span>`;
+graphLabel1.innerHTML = `${number2}</span><span style="color: black; font-size: 70%; font-weight: normal;">/10</span>`;
 // graphLabel.fontSize = '38px'
 lab1.style.fontSize = '18px'
 graphLabel1.style.fontWeight = 'bold';
-if (datatata.datasets[0].needleValue < 4)
+if (number2 < 4)
 {
   graphLabel1.style.color = '#f44636';
   lab1.innerText = 'Bad';
   lab1.style.background = '#f44636';
 }
-else if (4 <=datatata.datasets[0].needleValue && datatata.datasets[0].needleValue <= 6) 
+else if (4 <=number2 && number2 <= 6) 
 {
   lab1.innerText = 'Fair';
-  lab1.style.backgroundColor = '#f9df41';
-  graphLabel1.style.color = '#f9df41';
+  lab1.style.backgroundColor = '#f8b83e';
+  graphLabel1.style.color = '#f8b83e';
 }
 else 
 {
@@ -491,6 +533,7 @@ else
   lab1.style.background = '#21c393';
   graphLabel1.style.color = '#21c393';
 }
-
+const ctx2 = document.getElementById("SpeedometrGraph2").getContext('2d');
 const Graph2 = new Chart(ctx2, config2)
+})
 };
