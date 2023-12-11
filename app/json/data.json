@@ -1,8 +1,8 @@
 {"datas": [{
-    "number" : 8
+    "number" : 6
 }],
 "datas2":[{
-    "number": 6
+    "number": 8
 }],
 "datas3":[{
     "month": "May",
@@ -13,7 +13,7 @@
 {
     "month": "Jun",
     "number1": 20,
-    "number2": 15,
+    "number2": 14,
     "number3": 38 
 },
 {
@@ -27,5 +27,18 @@
     "number1": 40,
     "number2": 6,
     "number3": 12 
-}]
+}], 
+"datas4":[{
+    "name": "Information 1",
+    "data": 24
+},
+{
+    "name": "Information 2",
+    "data": 34
+},
+{
+    "name": "Information 1",
+    "data": 87
+}
+]
 }
