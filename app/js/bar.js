@@ -1,4 +1,4 @@
-function initializeBarCh(labels,set1,set2,set3){
+function initializeBarCh(id, labels,set1,set2,set3){
   const datas = {
     labels: labels,
     datasets: [
@@ -28,7 +28,7 @@ function initializeBarCh(labels,set1,set2,set3){
       },
     ]
   };
-  let BarChart = document.getElementById("BarChart").getContext('2d');
+  let BarChart = document.getElementById(id).getContext('2d');
   
   const BarChartv = new Chart(BarChart, {
     type: 'bar',
@@ -66,7 +66,7 @@ function initializeBarCh(labels,set1,set2,set3){
   }});
 }
 
-function initializeBar() {
+function initializeBar(id) {
 
   const labelss = [''];
   const datasss = {
@@ -103,7 +103,7 @@ function initializeBar() {
     ]
   };
   
-  let BarCh = document.getElementById("BarCh").getContext('2d');
+  let BarCh = document.getElementById(id).getContext('2d');
   
   
   const BarChrt = new Chart(BarCh,{

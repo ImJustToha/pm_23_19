@@ -1,6 +1,6 @@
-function initializeWavy() {
+function initializeWavy(id) {
 
-    let wavyGraph = document.getElementById('wavesGraph').getContext('2d');
+    let wavyGraph = document.getElementById(id).getContext('2d');
   
     const gradient = wavyGraph.createLinearGradient(0, 0, 0, 400);
     gradient.addColorStop(0, 'white');

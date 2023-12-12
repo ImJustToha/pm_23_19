@@ -6,6 +6,7 @@ const sass = require('gulp-sass')(require('sass'));
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const jsonminify = require('gulp-jsonminify');
+//const concatJson = require('gulp-concat-json');
 
 //додаткові плагіни Gulp
  cssnano = require ("gulp-cssnano"), //мінімізація CSS
@@ -49,6 +50,7 @@ task('chart-js', function () {
 task('json', function () {
     return src('./app/json/*.json')
       .pipe(jsonminify())
+      //.pipe(concatJson('data.json'))
       .pipe(dest('./dist/json/'));
   });
 

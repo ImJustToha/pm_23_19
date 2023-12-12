@@ -1,9 +1,8 @@
 window.onload = function () {
 
-  initializeWavy();
-  initializePoints();
- // initializePie();
-  initializeBar();
+  initializeWavy('wavesGraph');
+  initializePoints("pointStyling");
+  initializeBar("BarCh");
 
   //AJAX
   processData();

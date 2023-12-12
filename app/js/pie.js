@@ -1,4 +1,4 @@
-function initializePie(labels, datas) {
+function initializePie(id,labels, datas) {
     const data= {
       labels: labels,
       datasets: [
@@ -34,7 +34,7 @@ function initializePie(labels, datas) {
     };
     
     
-    let PieChart = document.getElementById("PieChart").getContext('2d');
+    let PieChart = document.getElementById(id).getContext('2d');
     
     const PieCharts = new Chart(PieChart,{
       type: 'doughnut',

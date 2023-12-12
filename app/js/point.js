@@ -1,6 +1,6 @@
-function initializePoints(){
+function initializePoints(id){
 
-    let pointStyling = document.getElementById("pointStyling").getContext('2d');
+    let pointStyling = document.getElementById(id).getContext('2d');
   
     const pointStylingGraph = new Chart(pointStyling, {
       type: 'line',

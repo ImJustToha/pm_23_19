@@ -21,22 +21,4 @@
     "number1": 40,
     "number2": 6,
     "number3": 12 
-}],"pie":[{
-    "name": "Information 1",
-    "data": 24
-},
-{
-    "name": "Information 2",
-    "data": 34
-},
-{
-    "name": "Information 1",
-    "data": 87
-}
-],
-"sp1": [{
-    "number" : 6
-}],"sp2":[{
-    "number": 8
-}]
-}
+}]}
